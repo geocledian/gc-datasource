@@ -1,8 +1,8 @@
 /*
  Vue.js Geocledian datasource component
  created: 2021-09-19, jsommer
- updated: 2021-09-19, jsommer
- version: 0.1
+ updated: 2021-10-10, jsommer
+ version: 0.2
 */
 "use strict";
 
@@ -48,7 +48,11 @@ Vue.component('gc-datasource', {
     gcLanguage: {
       type: String,
       default: 'en' // 'en' | 'de'
-    }
+    },
+    gcDataSource: {
+      type: String,
+      default: '' // 'sentinel2' | 'landsat8'
+    },
   },
   template: `<div :id="this.gcWidgetId" class="">
 
@@ -80,7 +84,6 @@ Vue.component('gc-datasource', {
   data: function () {
     console.debug("parceldata! - data()");
     return {
-        datasource: "",
         layoutCSSMap: { "alignment": {"vertical": "is-inline-block", "horizontal": "is-flex" }}
     }
   },
@@ -113,14 +116,19 @@ Vue.component('gc-datasource', {
         return this.gcLanguage;
       },
     },
+    datasource: {
+      get: function() {
+        return this.gcDataSource;
+      },
+      set: function(newValue) {
+        this.$root.$emit('dataSourceChange', newValue);
+      }
+    }
   },
   watch: {
     currentLanguage(newValue, oldValue) {
       this.changeLanguage();
     },
-    datasource(newValue, oldValue) { 
-      this.$root.$emit('dataSourceChange', newValue);
-    }
   },
   methods: {  
     toggleDatasource() {
