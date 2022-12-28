@@ -15,9 +15,9 @@ const gcDatasourceLocales = {
     "datasource": {
       "sentinel2": "Sentinel 2",
       "landsat8": "Landsat 8",
-      "all": "All",
+      "combined": "S2/L8",
       "sentinel1": "Sentinel 1",
-      "sentinel12": "Sentinel 1/2"
+      "sentinel12": "S1/S2"
     },
   },
   "de": {
@@ -27,9 +27,9 @@ const gcDatasourceLocales = {
     "datasource": {
       "sentinel2": "Sentinel 2",
       "landsat8": "Landsat 8",
-      "all": "Alle",
+      "combined": "S2/L8",
       "sentinel1": "Sentinel 1",
-      "sentinel12": "Sentinel 1/2"
+      "sentinel12": "S1/S2"
     },
   },
 }
@@ -79,12 +79,12 @@ Vue.component('gc-datasource', {
                     <input id="rdLandsat" type="radio" class="is-small is-checkradio is-orange" name="source" value="landsat8" 
                             v-model="datasource">
                     <label for="rdLandsat" class="is-orange is-small" style="white-space: nowrap;">{{ $t('datasource.landsat8')}}</label>
-                    <input id="rdSentinel" type="radio" class="is-small is-checkradio is-orange" name="source" value="sentinel2" 
+                    <input id="rdSentinel2" type="radio" class="is-small is-checkradio is-orange" name="source" value="sentinel2" 
                             v-model="datasource">
-                    <label for="rdSentinel" class="is-orange is-small" style="white-space: nowrap;">{{ $t('datasource.sentinel2')}}</label>
-                    <input id="rdAll" type="radio" class="is-small is-checkradio is-orange" name="source" value="" 
+                    <label for="rdSentinel2" class="is-orange is-small" style="white-space: nowrap;">{{ $t('datasource.sentinel2')}}</label>
+                    <input id="rdS2LS8" type="radio" class="is-small is-checkradio is-orange" name="source" value="" 
                             v-model="datasource">
-                    <label for="rdAll" class="is-orange is-small" style="white-space: nowrap;">{{ $t('datasource.all')}}</label>
+                    <label for="rdS2LS8" class="is-orange is-small" style="white-space: nowrap;">{{ $t('datasource.combined')}}</label>
                     <input id="rdSentinel1" type="radio" class="is-small is-checkradio is-orange" name="source" value="sentinel1" 
                             v-model="datasource">
                     <label for="rdSentinel1" class="is-orange is-small" style="white-space: nowrap;">{{ $t('datasource.sentinel1')}}</label>
