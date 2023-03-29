@@ -9,21 +9,35 @@
 //language strings
 const gcDatasourceLocales = {
   "en": {
-    "options": { "title": "Data source" },
-    "datasource": { 
+    "options": {
+      "title": "Data source"
+    },
+    "datasource": {
       "sentinel2": "Sentinel 2",
       "landsat8": "Landsat 8",
       "all": "All",
     },
   },
   "de": {
-    "options": { "title": "Datenquelle" },
-    "datasource": { 
+    "options": {
+      "title": "Datenquelle"
+    },
+    "datasource": {
       "sentinel2": "Sentinel 2",
       "landsat8": "Landsat 8",
       "all": "Alle",
     },
   },
+  "lt": {
+    "options": {
+      "title": "Duomenų šaltinis"
+    },
+    "datasource": {
+      "sentinel2": "Sentinel 2",
+      "landsat8": "Landsat 8",
+      "all": "Visi",
+    },
+  }
 }
 
 Vue.component('gc-datasource', {
@@ -84,10 +98,16 @@ Vue.component('gc-datasource', {
   data: function () {
     console.debug("parceldata! - data()");
     return {
-        layoutCSSMap: { "alignment": {"vertical": "is-inline-block", "horizontal": "is-flex" }}
+      layoutCSSMap: {
+        "alignment": {
+          "vertical": "is-inline-block",
+          "horizontal": "is-flex"
+        }
+      }
     }
   },
-  i18n: { 
+  //init internationalization
+  i18n: {
     locale: this.currentLanguage,
     messages: gcDatasourceLocales
   },
@@ -98,29 +118,24 @@ Vue.component('gc-datasource', {
   /* when vue component is mounted (ready) on DOM node */
   mounted: function () {
     console.debug("datasource! - mounted()");
-    
-    try {
-      this.changeLanguage();
-    } catch (ex) {}
-
   },
   computed: {
     availableOptions: {
-      get: function() {
+      get: function () {
         return (this.gcAvailableOptions.split(","));
       }
     },
     currentLanguage: {
-      get: function() {
+      get: function () {
         // will always reflect prop's value 
         return this.gcLanguage;
       },
     },
     datasource: {
-      get: function() {
+      get: function () {
         return this.gcDataSource;
       },
-      set: function(newValue) {
+      set: function (newValue) {
         this.$root.$emit('dataSourceChange', newValue);
       }
     }
@@ -130,7 +145,7 @@ Vue.component('gc-datasource', {
       this.changeLanguage();
     },
   },
-  methods: {  
+  methods: {
     toggleDatasource() {
       this.gcWidgetCollapsed = !this.gcWidgetCollapsed;
     },
